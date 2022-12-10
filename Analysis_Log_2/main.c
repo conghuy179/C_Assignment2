@@ -68,19 +68,18 @@ int count_messages_from_device(char *file_str, char *network_address) //ham tric
 
     char command_phase[] = "\"cmd\":\"set\"";
     int message_count = 0;
-    char *temp1, *temp2;
-    int info_len = strlen(info);
 
      // dem command phase va network address trong info
      // neu tim thay ca 2, count++
 
-    temp1 = strstr(info,command_phase);
-    temp2 = strstr(info, network_address);
-
-    if (temp1 != NULL && temp2 != NULL)
-    {
-        message_count++;
-    }
+    for (int j = 0; j < 18; j++)
+   {
+       if(strstr(info[j],command_phase) != NULL && strstr(info[j], network_address) != NULL)
+       {
+           printf("%s\n", info[j]);
+           message_count++;
+       }
+   }
 
     token = strtok(NULL, "\n");
 
@@ -90,17 +89,19 @@ int count_messages_from_device(char *file_str, char *network_address) //ham tric
 
 int main()
 {
-    // Cau 2
-    char network_address[100];
-    printf("Nhap dia chi network: \n");
-    scanf("%d", network_address);
-    int sent_count = count_messages_from_device(file_str,network_address);
-    printf("So ban tin gui di: %d", sent_count);
+
 
     // Cau 1:
     file_to_str(file_str);
     int slbt = count_messages(file_str, "\"cmd\":\"set\"");
     printf("So luong ban tin: %d\n", slbt);
+
+    // Cau 2
+    char network_address[100];
+    printf("Nhap dia chi network: \n");
+    scanf("%d", network_address);
+    int sent_count = count_messages_from_device(file_str,network_address);
+    printf("So ban tin gui di: %d\n", sent_count);
 
     return 0;
 }
