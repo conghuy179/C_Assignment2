@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1670752186 source:c:\users\admin\documents\code\c\assignment\analysis_log_onlyfor2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+	<math.h>
+
